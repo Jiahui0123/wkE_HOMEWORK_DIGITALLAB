@@ -1,0 +1,16 @@
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(3,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int sensorRead=analogRead(A0); //300~600
+  Serial.println(sensorRead);
+  if(sensorRead<300)sensorRead=300;
+  else if(sensorRead>600)sensorRead=600;
+  int ledblink=map(sensorRead,300,600,0,255);
+  analogWrite(3,ledblink);
+  delay(1);
+}
